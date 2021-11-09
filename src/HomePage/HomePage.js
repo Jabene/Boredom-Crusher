@@ -4,10 +4,10 @@ import './HomePage.css'
 
 const HomePage = () => {
   return (
-    <main className='home-page'>
+    <section className='home-page'>
       <h1>Bored?</h1>
       <Button path='/newActivity' text='Click Here' className='bored-btn' />
-    </main>
+    </section>
   )
 }
 

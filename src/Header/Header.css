@@ -8,8 +8,16 @@ header {
   margin: 0px;
 }
 
-header > h1 {
+.site-title {
   font-size: 3rem;
+  color: black;
+  text-decoration: none;
+}
+
+.site-title:visited {
+  font-size: 3rem;
+  color: black;
+  text-decoration: none;
 }
 
 .login-section: {

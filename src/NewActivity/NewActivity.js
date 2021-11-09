@@ -18,7 +18,7 @@ export default class NewActivity extends React.Component {
     const { loading } = this.state
 
     return (
-      <main className='new-activity-page'>
+      <section className='new-activity-page'>
         { loading ?
           <h1 className='loading-message' >
             Finding the perfect activity...
@@ -29,7 +29,7 @@ export default class NewActivity extends React.Component {
             <p>{ type }</p>
           </div>
         }
-      </main>
+      </section>
     )
   }
 }

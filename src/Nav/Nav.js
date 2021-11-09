@@ -4,9 +4,9 @@ import './Nav.css'
 
 const Nav = () => {
   return (
-    <nav>
-      <Button path='/' text='HOME' className='nav-btn-home' />
-      <Button path='/savedActivities' text='SAVED' className='nav-btn-saved' />
+    <nav className='nav'>
+      <Button path='/' text='HOME' className='nav-btn' />
+      <Button path='/savedActivities' text='SAVED' className='nav-btn' />
     </nav>
   )
 }

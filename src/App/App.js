@@ -1,5 +1,6 @@
 import React from 'react'
 import Header from '../Header/Header'
+import Aside from '../Aside/Aside'
 import HomePage from '../HomePage/HomePage'
 import NewActivity from '../NewActivity/NewActivity'
 import SavedActivities from '../SavedActivities/SavedActivities'
@@ -15,11 +16,14 @@ class App extends React.Component {
     return (
       <div className="App">
         <Header />
-        <Routes>
-          <Route exact path='/' element={ <HomePage /> } />
-          <Route path='/newActivity' element={ <NewActivity />} />
-          <Route path='/savedActivities' element={ <SavedActivities />} />
-        </Routes>
+        <main className='main-section'>
+          <Aside />
+          <Routes>
+            <Route exact path='/' element={ <HomePage /> } />
+            <Route path='/newActivity' element={ <NewActivity />} />
+            <Route path='/savedActivities' element={ <SavedActivities />} />
+          </Routes>
+        </main>
       </div>
     );
   }
