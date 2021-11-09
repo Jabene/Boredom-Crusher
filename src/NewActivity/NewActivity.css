@@ -1,0 +1,19 @@
+.new-activity-page {
+  width: 100vw;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: blue;
+}
+
+.loading-message {
+  font-size: 4rem;
+}
+
+.new-activity-card {
+  width: 60%;
+  height: 60%;
+  background-color: pink;
+}
