@@ -1,3 +1,7 @@
+.btn {
+  cursor: pointer;
+}
+
 .bored-btn {
   width: 20vw;
   height: 10vh;
@@ -5,6 +9,12 @@
   font-size: 3rem;
 }
 
-.btn {
-  cursor: pointer;
+.save-btn {
+  width: 10%;
+  height: 25%;
+  background-color: none;
+  border: none;
+  margin: 5% 0% 5% 0%;
+  font-size: 1.25rem;
+  border-radius: 10px;
 }
