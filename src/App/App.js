@@ -10,9 +10,16 @@ import './App.css';
 
 class App extends React.Component {
   state = {
+    activities: [],
+  }
+
+  saveActivity = (activity) => {
+    const activities = this.state.activities
+    this.setState({activities: [...activities, activity]})
   }
 
   render() {
+    const { activities } = this.state
     return (
       <div className="App">
         <Header />
@@ -20,8 +27,8 @@ class App extends React.Component {
           <Aside />
           <Routes>
             <Route exact path='/' element={ <HomePage /> } />
-            <Route path='/newActivity' element={ <NewActivity />} />
-            <Route path='/savedActivities' element={ <SavedActivities />} />
+            <Route path='/newActivity' element={ <NewActivity save={ this.saveActivity }/>} />
+            <Route path='/savedActivities' element={ <SavedActivities activities={ activities }/>} />
           </Routes>
         </main>
       </div>
