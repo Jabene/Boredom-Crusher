@@ -2,10 +2,10 @@ import React from 'react'
 import Nav from '../Nav/Nav'
 import './Aside.css'
 
-const Aside = () => {
+const Aside = ({ user }) => {
   return (
     <aside>
-      <Nav />
+      <Nav user={ user }/>
     </aside>
   )
 }

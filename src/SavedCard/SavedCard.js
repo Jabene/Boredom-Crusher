@@ -2,6 +2,7 @@ import React from 'react'
 import './SavedCard.css'
 
 const SavedCard = ({ activity }) => {
+
   return (
     <article className='saved-card'>
       <h3>{activity.activity}</h3>
