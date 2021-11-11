@@ -7,6 +7,7 @@ import SavedActivities from '../SavedActivities/SavedActivities'
 import SignUp from '../SignUp/SignUp'
 import LogIn from '../LogIn/LogIn'
 import { Route, Routes, Navigate } from 'react-router-dom'
+import fetchCalls from '../fetchCalls'
 import './App.css';
 
 
@@ -16,9 +17,17 @@ class App extends React.Component {
     user: {}
   }
 
-  saveActivity = activity => {
-    const activities = this.state.activities
-    this.setState({activities: [...activities, activity]})
+  saveActivity = async activity => {
+    const { user } = this.state
+    await fetchCalls.saveActivity( user.id, activity )
+    this.setActivities()
+  }
+
+  setActivities = async () => {
+    const { user } = this.state
+    console.log(user.id)
+    const activities = await fetchCalls.getActivities( +user.id )
+    this.setState({activities: [...activities]})
   }
 
   setUser = user => {
@@ -28,6 +37,21 @@ class App extends React.Component {
       lastName: last_name,
       id: id
     }});
+    this.setActivities()
+    this.saveUserToLocalStorage()
+  }
+
+  saveUserToLocalStorage = () => {
+    const user = JSON.stringify(this.state.user)
+    localStorage.setItem('user', user)
+  }
+
+  componentDidMount = async () => {
+    const user = JSON.parse(localStorage.getItem('user'))
+    if ( user ) {
+      await this.setState({user: user})
+      this.setActivities()
+    }
   }
 
   render() {
@@ -62,7 +86,8 @@ class App extends React.Component {
               path='/logIn'
               element={ user.id ?
                 <Navigate to='/' /> :
-                <LogIn setUser={ this.setUser } /> }
+                <LogIn
+                  setUser={ this.setUser } /> }
             />
           </Routes>
         </main>
