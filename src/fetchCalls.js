@@ -1,6 +1,6 @@
 const fetchCalls = {
   getActivity() {
-    return fetch('http://www.boredapi.com/api/activity/')
+    return fetch('https://www.boredapi.com/api/activity/')
       .then(activity => activity.json())
   },
 
