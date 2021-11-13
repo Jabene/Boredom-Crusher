@@ -25,7 +25,6 @@ class App extends React.Component {
 
   setActivities = async () => {
     const { user } = this.state
-    console.log(user.id)
     const activities = await fetchCalls.getActivities( +user.id )
     this.setState({activities: [...activities]})
   }
@@ -68,7 +67,7 @@ class App extends React.Component {
           />
             <Route
               path='/newActivity'
-              element={ <NewActivity save={ this.saveActivity } /> }
+              element={ <NewActivity save={ this.saveActivity } user={ this.state.user } /> }
             />
             <Route
               path='/savedActivities'

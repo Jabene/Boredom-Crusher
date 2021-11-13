@@ -11,7 +11,7 @@ const Header = ({ user }) => {
       </Link>
       <div className='login-section'>
         { user.id ?
-          <h2>{`Welcome ${user.firstName}`}</h2> :
+          <h2 className='welcome-message'>{`Welcome ${user.firstName}`}</h2> :
         <><Button path='/signUp' text='Sign Up' className='login-btns' />
         <Button path='/logIn' text='Log In' className='login-btns' /></>
         }

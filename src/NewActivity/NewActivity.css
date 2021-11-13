@@ -5,7 +5,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: blue;
+  border-radius: 20px 0px 0px 0px;
+  border: solid black 2px;
+  background-color: #BADEFC;
 }
 
 .loading-message {
@@ -19,6 +21,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  border-radius: 20px;
+  border: solid black 2px;
   background-color: pink;
 }
 
@@ -41,6 +45,7 @@
 
 .heading-and-btn > button {
   margin-left: 5%;
+  border: solid black 2px;
 }
 
 .new-activity-card-heading > p {
