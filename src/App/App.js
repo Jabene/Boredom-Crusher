@@ -17,6 +17,11 @@ class App extends React.Component {
     user: {}
   }
 
+  deleteActivity = async activityId => {
+    await fetchCalls.deleteActivity( activityId )
+    this.setActivities()
+  }
+
   saveActivity = async activity => {
     const { user } = this.state
     await fetchCalls.saveActivity( user.id, activity )
@@ -25,7 +30,7 @@ class App extends React.Component {
 
   setActivities = async () => {
     const { user } = this.state
-    const activities = await fetchCalls.getActivities( +user.id )
+    const activities = await fetchCalls.getActivities( user.id )
     this.setState({activities: [...activities]})
   }
 
@@ -72,7 +77,7 @@ class App extends React.Component {
             <Route
               path='/savedActivities'
               element={ user.id ?
-                <SavedActivities activities={ activities } /> :
+                <SavedActivities activities={ activities } deleteActivity={ this.deleteActivity }/> :
                 <Navigate to='/logIn' /> }
             />
             <Route

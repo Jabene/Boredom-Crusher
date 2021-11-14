@@ -56,6 +56,20 @@ const fetchCalls = {
       })
       .catch(error => console.log(error))
   },
+
+  deleteActivity( activityId ) {
+    return fetch(`https://bored-crusher.herokuapp.com/activities/${activityId}`, {
+      method: 'DELETE',
+    })
+      .then(response => {
+        if(response.ok) {
+          return response.json()
+        } else {
+          throw new Error('Something went Wrong!')
+        }
+      })
+      .catch(error => console.log(error))
+  },
 }
 
 export default fetchCalls
