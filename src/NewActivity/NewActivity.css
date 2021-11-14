@@ -38,13 +38,16 @@
 
 .heading-and-btn {
   width: 55%;
+  height: 100%;
   flex-direction: row;
   margin-left: 5%;
   display:flex;
 }
 
 .heading-and-btn > button {
-  margin-left: 5%;
+  width: 15%;
+  height: 50%;
+  margin-left: 10%;
   border: solid black 2px;
 }
 
@@ -56,6 +59,9 @@
 
 .saved-message {
   font-size: 1rem;
+  color: red;
+  margin-left: 5%;
+  margin-top: 5%;
 }
 
 .new-activity-card-body {
@@ -66,4 +72,9 @@
   align-items: center;
   justify-content: center;
   font-size: 3rem;
+}
+
+.learn-more {
+  margin-top: 5%;
+  font-size: 1.5rem;
 }

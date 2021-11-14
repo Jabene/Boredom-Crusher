@@ -28,7 +28,7 @@ export default class NewActivity extends React.Component {
           <div className='new-activity-card'>
             <div className='new-activity-card-heading'>
               <div className='heading-and-btn'>
-                <h2>New Activity</h2>
+                <h2>{ type.charAt(0).toUpperCase() + type.slice(1)}</h2>
                 {this.state.saved ?
                   <p className='saved-message'>This Activity has been saved</p>:
                   ( user.id ?
@@ -44,10 +44,13 @@ export default class NewActivity extends React.Component {
                   )
                 }
               </div>
-              <p>Type: { type }</p>
             </div>
             <div className='new-activity-card-body'>
               <h3>{ activity }</h3>
+              { link ?
+                <p className='learn-more'>Learn more <a href={link}>HERE</a></p> :
+                ""
+              }
             </div>
           </div>
         }
