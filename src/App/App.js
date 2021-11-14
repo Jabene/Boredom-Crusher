@@ -14,7 +14,12 @@ import './App.css';
 class App extends React.Component {
   state = {
     activities: [],
-    user: {}
+    user: {},
+    type: ''
+  }
+
+  updateType = type => {
+    this.setState({type: type})
   }
 
   deleteActivity = async activityId => {
@@ -68,12 +73,21 @@ class App extends React.Component {
           <Routes>
             <Route
               path='/'
-              element={ <HomePage /> }
-          />
+              element={ <HomePage updateType={ this.updateType }/> }
+            />
             <Route
               path='/newActivity'
               element={
-                <NewActivity 
+                <NewActivity
+                  save={ this.saveActivity }
+                  user={ this.state.user }
+                />
+              }
+            />
+            <Route
+              path='/newActivity/:activityType'
+              element={
+                <NewActivity
                   save={ this.saveActivity }
                   user={ this.state.user }
                 />

@@ -1,6 +1,8 @@
 import React from 'react'
+import { useParams } from 'react-router-dom'
 import fetchCalls from '../fetchCalls'
 import './NewActivity.css'
+
 
 export default class NewActivity extends React.Component {
   state = {
