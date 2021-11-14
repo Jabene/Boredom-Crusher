@@ -11,7 +11,9 @@ const SavedCard = ({ activity, deleteActivity }) => {
     <article className='saved-card'>
       <h3>{activity.activity}</h3>
       <p>Type: {activity.type}</p>
-      <button onClick={ () => deleteCard( activity.id, deleteActivity )}>
+      <button
+        className='delete-btn btn'
+        onClick={ () => deleteCard( activity.id, deleteActivity )}>
         Delete
       </button>
     </article>

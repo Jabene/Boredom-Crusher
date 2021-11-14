@@ -5,7 +5,8 @@ import fetchCalls from '../fetchCalls'
 class LogIn extends React.Component {
   state = {
     email: '',
-    password: ''
+    password: '',
+    error: ''
   }
 
   handleChange = e => {
@@ -14,8 +15,15 @@ class LogIn extends React.Component {
 
   submit = async ( e ) => {
     e.preventDefault()
-    const user = await fetchCalls.logIn( this.state )
-    this.props.setUser( user )
+    const user = await fetchCalls.logIn({
+      email: this.state.email,
+      password: this.state.password
+    })
+    if ( !user.length ) {
+      this.setState({error: `We couldn't find a user with those credentials`})
+    } else {
+      this.props.setUser( user )
+    }
   }
 
   render() {
@@ -47,6 +55,7 @@ class LogIn extends React.Component {
           <button className='log-in-submit'>
             Submit
           </button>
+          {this.state.error ? this.state.error : ''}
         </form>
       </section>
     )

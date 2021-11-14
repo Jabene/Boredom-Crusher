@@ -8,15 +8,6 @@ export default class SavedActivities extends React.Component {
   }
 
   componentDidMount() {
-    this.createActivityCards()
-  }
-
-  deleteActivity = async (id) => {
-    await this.props.deleteActivity( id )
-    this.createActivityCards()
-  }
-
-  createActivityCards() {
     const cards = this.props.activities.map(activity => {
       return(
         <SavedCard
@@ -27,6 +18,12 @@ export default class SavedActivities extends React.Component {
       )
     })
     this.setState({activities: cards})
+  }
+
+  deleteActivity = async (id) => {
+    await this.props.deleteActivity( id )
+    const newCards = this.state.activities.filter(activity => +activity.key !== +id)
+    this.setState({activities: newCards})
   }
 
   render() {

@@ -72,12 +72,20 @@ class App extends React.Component {
           />
             <Route
               path='/newActivity'
-              element={ <NewActivity save={ this.saveActivity } user={ this.state.user } /> }
+              element={
+                <NewActivity 
+                  save={ this.saveActivity }
+                  user={ this.state.user }
+                />
+              }
             />
             <Route
               path='/savedActivities'
               element={ user.id ?
-                <SavedActivities activities={ activities } deleteActivity={ this.deleteActivity }/> :
+                <SavedActivities
+                  activities={ activities }
+                  deleteActivity={ this.deleteActivity }
+                /> :
                 <Navigate to='/logIn' /> }
             />
             <Route

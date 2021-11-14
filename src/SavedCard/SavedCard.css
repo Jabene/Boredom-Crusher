@@ -18,3 +18,12 @@
 .saved-card > p {
   font-size: 1.25rem;
 }
+
+.delete-btn {
+  margin-top: 5%;
+  width: 20%;
+  height: 10%;
+  border-radius: 10px;
+  border: solid black 2px;
+  background-color: #FFFECB;
+}

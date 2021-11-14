@@ -24,7 +24,8 @@ header {
 }
 
 .login-section: {
-
+  width: 50%;
+  margin-right: 5%;
 }
 
 .login-btns {
@@ -37,5 +38,7 @@ header {
 }
 
 .welcome-message {
+  width: 100%;
   font-size: 3rem;
+  margin-right: 5%;
 }
