@@ -1,9 +1,10 @@
 .saved-activities-page {
   width: 90vw;
   height: 90vh;
-  background-color: purple;
+  background-color: #EAAEB8;
   display: flex;
-  align-items: center;
   flex-wrap: wrap;
   overflow-y: scroll;
+  border-radius: 20px 0px 0px 0px;
+  border: solid black 2px;
 }

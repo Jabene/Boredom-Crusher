@@ -4,14 +4,17 @@ header {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  background-color: green;
+  background-color: #FFFECB;
   margin: 0px;
 }
 
 .site-title {
+  width: 100%;
   font-size: 3rem;
   color: black;
   text-decoration: none;
+  margin-left: 25%;
+  margin-bottom: 3%;
 }
 
 .site-title:visited {
@@ -21,7 +24,8 @@ header {
 }
 
 .login-section: {
-
+  width: 50%;
+  margin-right: 5%;
 }
 
 .login-btns {
@@ -31,4 +35,10 @@ header {
   border-top: none;
   border-bottom: none;
   font-size: 1.75rem;
+}
+
+.welcome-message {
+  width: 100%;
+  font-size: 3rem;
+  margin-right: 5%;
 }

@@ -1,6 +1,8 @@
 import React from 'react'
+import { useParams } from 'react-router-dom'
 import fetchCalls from '../fetchCalls'
 import './NewActivity.css'
+
 
 export default class NewActivity extends React.Component {
   state = {
@@ -17,7 +19,7 @@ export default class NewActivity extends React.Component {
   render() {
     const { activity, link, type, participants, price } = this.state.wholeActivity
     const { loading, wholeActivity } = this.state
-    const { save } = this.props
+    const { save, user } = this.props
 
     return (
       <section className='new-activity-page'>
@@ -28,22 +30,29 @@ export default class NewActivity extends React.Component {
           <div className='new-activity-card'>
             <div className='new-activity-card-heading'>
               <div className='heading-and-btn'>
-                <h2>New Activity</h2>
+                <h2>{ type.charAt(0).toUpperCase() + type.slice(1)}</h2>
                 {this.state.saved ?
                   <p className='saved-message'>This Activity has been saved</p>:
-                  <button
-                    onClick={ () => {
-                      save(wholeActivity)
-                      this.setState({saved: true})
-                    }}
-                    className='save-btn btn'
-                  >Save</button>
+                  ( user.id ?
+                    <button
+                      onClick={ () => {
+                        save(wholeActivity)
+                        this.setState({saved: true})
+                      }}
+                      className='save-btn btn'>
+                      Save
+                    </button> :
+                    ""
+                  )
                 }
               </div>
-              <p>Type: { type }</p>
             </div>
             <div className='new-activity-card-body'>
               <h3>{ activity }</h3>
+              { link ?
+                <p className='learn-more'>Learn more <a href={link}>HERE</a></p> :
+                ""
+              }
             </div>
           </div>
         }

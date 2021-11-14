@@ -1,6 +1,6 @@
 const fetchCalls = {
   getActivity() {
-    return fetch('http://www.boredapi.com/api/activity/')
+    return fetch('https://www.boredapi.com/api/activity/')
       .then(activity => activity.json())
   },
 
@@ -17,7 +17,58 @@ const fetchCalls = {
 
   logIn(credentials) {
     return fetch(`https://bored-crusher.herokuapp.com/log-in/${credentials.email}/${credentials.password}`)
-      .then(response => response.json())
+      .then(response => {
+        if(response.ok) {
+          return response.json()
+        } else {
+          throw new Error('Something went Wrong!')
+        }
+      })
+      .catch(error => console.log(error))
+  },
+
+  saveActivity( userId, activity ){
+    return fetch(`https://bored-crusher.herokuapp.com/activity/${ userId }`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(activity)
+    })
+      .then(response => {
+        if(response.ok) {
+          console.log(response.json())
+        } else {
+          throw new Error('Something went Wrong!')
+        }
+      })
+      .catch(error => console.log(error))
+  },
+
+  getActivities( userId ) {
+    return fetch(`https://bored-crusher.herokuapp.com/activities/${ userId }`)
+      .then(response => {
+        if(response.ok) {
+          return response.json()
+        } else {
+          throw new Error('Something went Wrong!')
+        }
+      })
+      .catch(error => console.log(error))
+  },
+
+  deleteActivity( activityId ) {
+    return fetch(`https://bored-crusher.herokuapp.com/activities/${activityId}`, {
+      method: 'DELETE',
+    })
+      .then(response => {
+        if(response.ok) {
+          return response.json()
+        } else {
+          throw new Error('Something went Wrong!')
+        }
+      })
+      .catch(error => console.log(error))
   },
 }
 

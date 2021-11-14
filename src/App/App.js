@@ -7,18 +7,36 @@ import SavedActivities from '../SavedActivities/SavedActivities'
 import SignUp from '../SignUp/SignUp'
 import LogIn from '../LogIn/LogIn'
 import { Route, Routes, Navigate } from 'react-router-dom'
+import fetchCalls from '../fetchCalls'
 import './App.css';
 
 
 class App extends React.Component {
   state = {
     activities: [],
-    user: {}
+    user: {},
+    type: ''
   }
 
-  saveActivity = activity => {
-    const activities = this.state.activities
-    this.setState({activities: [...activities, activity]})
+  updateType = type => {
+    this.setState({type: type})
+  }
+
+  deleteActivity = async activityId => {
+    await fetchCalls.deleteActivity( activityId )
+    this.setActivities()
+  }
+
+  saveActivity = async activity => {
+    const { user } = this.state
+    await fetchCalls.saveActivity( user.id, activity )
+    this.setActivities()
+  }
+
+  setActivities = async () => {
+    const { user } = this.state
+    const activities = await fetchCalls.getActivities( user.id )
+    this.setState({activities: [...activities]})
   }
 
   setUser = user => {
@@ -28,6 +46,21 @@ class App extends React.Component {
       lastName: last_name,
       id: id
     }});
+    this.setActivities()
+    this.saveUserToLocalStorage()
+  }
+
+  saveUserToLocalStorage = () => {
+    const user = JSON.stringify(this.state.user)
+    localStorage.setItem('user', user)
+  }
+
+  componentDidMount = async () => {
+    const user = JSON.parse(localStorage.getItem('user'))
+    if ( user ) {
+      await this.setState({user: user})
+      this.setActivities()
+    }
   }
 
   render() {
@@ -40,16 +73,33 @@ class App extends React.Component {
           <Routes>
             <Route
               path='/'
-              element={ <HomePage /> }
-          />
+              element={ <HomePage updateType={ this.updateType }/> }
+            />
             <Route
               path='/newActivity'
-              element={ <NewActivity save={ this.saveActivity } /> }
+              element={
+                <NewActivity
+                  save={ this.saveActivity }
+                  user={ this.state.user }
+                />
+              }
+            />
+            <Route
+              path='/newActivity/:activityType'
+              element={
+                <NewActivity
+                  save={ this.saveActivity }
+                  user={ this.state.user }
+                />
+              }
             />
             <Route
               path='/savedActivities'
               element={ user.id ?
-                <SavedActivities activities={ activities } /> :
+                <SavedActivities
+                  activities={ activities }
+                  deleteActivity={ this.deleteActivity }
+                /> :
                 <Navigate to='/logIn' /> }
             />
             <Route
@@ -62,7 +112,8 @@ class App extends React.Component {
               path='/logIn'
               element={ user.id ?
                 <Navigate to='/' /> :
-                <LogIn setUser={ this.setUser } /> }
+                <LogIn
+                  setUser={ this.setUser } /> }
             />
           </Routes>
         </main>
